@@ -1,4 +1,4 @@
-let globalData = []
+let sortData =[]
 const fetchData = (dataLimit) => {
     document.getElementById("spinner").classList.remove("hidden")
     const url = `https://openapi.programming-hero.com/api/ai/tools`
@@ -6,21 +6,14 @@ const fetchData = (dataLimit) => {
         .then(res => res.json())
         .then(data => {
             document.getElementById("spinner").classList.add("hidden")
-            globalData = data.data.tools
+            sortData = data.data.tools
             displayData(data.data.tools, dataLimit)
         });
 }
-//fetchData()
-
-/*  <li class="text-sm">${features[0] ? features[0] : 'not found'}</li>
-           <li class="text-sm">${features[1] ? features[1] : 'not found'}</li>
-           <li class="text-sm">${features[2] ? features[2] : 'not found'}</li> */
 const displayData = (data, dataLimit) => {
-    console.log(data);
-    const cardContent = document.getElementById("card-components");
+   // console.log(data);
+    let cardContent = document.getElementById("card-components");
     cardContent.textContent = '';
-    //const featuresAdd = document.getElementById('feature-add');
-    //const hideButtton = document.getElementById('hide-btn');
     const showAll = document.getElementById("see-more");
     if (dataLimit && data.length > 6) {
         data = data.slice(0, 6);
@@ -30,20 +23,7 @@ const displayData = (data, dataLimit) => {
         showAll.classList.add('hidden');
     }
     data.forEach(cardData => {
-        //console.log(cardData);
         let { id, image, name, features, description, published_in } = cardData;
-        //console.log(published_in);
-        //  published_in.sort(function (a, b) {
-        //     let dateA = new Date(a),
-        //         dateB = new Date(b);
-        //     if (dateB > dateA) {
-        //         return -1;
-        //     } else {
-        //         return 1;
-        //     }
-        // });
-        // const arr = [...published_in]
-        // console.log(arr);
         let card = document.createElement('div');
         card.innerHTML = `    
         <div class="w-full h-full max-sm:mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -88,22 +68,6 @@ const cardDetails = (id) => {
 const showcardDetails = (singleData) => {
     console.log(singleData);
     const { id, tool_name, image_link, accuracy, description, features, integrations, pricing, input_output_examples } = singleData
-    /* 
-       <div class="text-sm w-28 h-20 card bg-base-100 shadow-sm text-center p-2"
-      <p>${pricing[0].price ? pricing[0].price : 'not available'}</p>
-      <p>${pricing[0].plan ? pricing[0].plan : 'not found'}</p>
-  </div>
-  <div class=" text-sm w-28 h-20 card bg-base-100 shadow-sm text-center p-2"
-      <p>${pricing[1].price ? pricing[1].price : 'not available'}</p>
-      <p>${pricing[1].plan ? pricing[1].plan : 'not found'}</p>
-  </div>
-  
-      <p>${pricing[2].price ? pricing[2].price : 'not available'}</p>
-      <p>${pricing[2].plan ? pricing[2].plan : 'not found'}</p>
-  </div>
-  .getElementById('accuracy')
-  const array = 
-    */
     const featureItem = Object.values(features)
     document.getElementById("modal-body").innerHTML = `
       <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
@@ -131,7 +95,7 @@ const showcardDetails = (singleData) => {
             <div class="pl-4 pb-8">
             <h1 class="text-2xl font-semibold">Integrations</h1>
               <ol class="list-decimal mt-2 ml-3">
-              ${integrations ? (integrations.map(inteData => `<li>${inteData}</li>`))
+              ${integrations ? (integrations.map(inteData =>`<li>${inteData}</li>`))
             : "free of cost"
         }
               </ol>
@@ -164,24 +128,15 @@ callData()
 const showAllData = () => {
     fetchData()
 }
-const sortByDate = () => {
-    let dates = []
-    const balData = globalData.filter(singleDate =>{
-       if( singleDate.published_in ){
-       dates.push(singleDate.published_in)
-        //console.log(dates);
-        dates.sort(function (a, b) {
-                let dateA = new Date(a),
-                    dateB = new Date(b);
-                if (dateB > dateA) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            });
-            dates.map(date => 
-            singleDate.published_in == date)
-        }
-    })
-    displayData(balData)
-}
+// sort by date
+const sortingAllData =  () => {
+   const arrayOFobject = sortData;
+      arrayOFobject.sort(sortFunction);
+      displayData(arrayOFobject);
+ }
+
+  function sortFunction(a,b){  
+    var dateA = new Date(a.published_in).getTime();
+    var dateB = new Date(b.published_in).getTime();
+    return dateA > dateB ? 1 : -1;  
+  }; 

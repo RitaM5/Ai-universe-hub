@@ -16,7 +16,7 @@
     <div class="container mx-auto pt-4 my-3">
         <h1 class="text-center text-2xl font-semibold">AI Universe Hub</h1>
         <p class="text-center mt-4">
-            <button onclick="sortByDate()" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-2 py-2.5 mr-2 mb-2">Sort By Date</button>
+            <button onclick="sortingAllData()" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-2 py-2.5 mr-2 mb-2">Sort By Date</button>
         </p>
         <div class=" flex items-center justify-center hidden" id="spinner">
             <div
@@ -30,6 +30,9 @@
           </div>
         <section class="mt-6">
             <div id="card-components" class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3">
+
+            </div>
+            <div id="sortdata-card-components" class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3">
 
             </div>
             <p class="text-center mt-6 hidden" id="see-more">
