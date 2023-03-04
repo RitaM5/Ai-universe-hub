@@ -99,12 +99,12 @@ const showcardDetails = (singleData) =>{
             <p>${description}</p>
             <div class="flex ">
             ${
-                pricing.map(priceData =>`
+                pricing ? (pricing.map(priceData =>`
                 <div class="shadow-sm text-sm w-28 h-20 card bg-base-100 shadow-sm text-center p-2">
                 <p>${priceData.price <= 0 || priceData.price === null ? "not available" : priceData.price}</p>
                 <p>${priceData.plan ? priceData.plan : "not found"}</p>
                 </div>
-                `)
+                `)) : "free of cost"
             }
             </div>
             <div class="md:flex md:justify-between">
@@ -120,7 +120,8 @@ const showcardDetails = (singleData) =>{
             <h1 class="text-2xl font-semibold">Integrations</h1>
               <ol class="list-decimal mt-2 ml-3">
               ${
-                 integrations.map(inteData =>`<li>${inteData === null ? "not found data" : inteData}</li>`)
+                 integrations ? (integrations.map(inteData => `<li>${inteData}</li>`))
+                 : "free of cost"
               }
               </ol>
             </div>
@@ -131,14 +132,14 @@ const showcardDetails = (singleData) =>{
      <figure class="px-10 pt-10 relative">
      <p class="absolute right-0 top-0 mt-11 mr-11">
       <button class="px-6 rounded bg-red-600 text-white py-1">
-      ${accuracy.score? (accuracy.score*100)+'% accuracy' : "0 accuracy"}
+      ${accuracy.score ? (accuracy.score*100)+'% accuracy' : "0 accuracy"}
       </button>
      </p>
      <img src="${image_link[0]}" alt="" class="rounded-xl" />
      </figure>
         <div class="card-body justify-center items-center">
-         <h1 class="font-semibold text-2xl text-center">${input_output_examples[0].input ? input_output_examples[0].input : "not found"}</h1>
-         <p class="text-center">${input_output_examples[0].output ? input_output_examples[0].output : "not found"}
+         <h1 class="font-semibold text-2xl text-center">${input_output_examples ? input_output_examples[0].input : "not found"}</h1>
+         <p class="text-center">${input_output_examples ? input_output_examples[0].output : "not found"}
         </div>
      </div>
     </div>
