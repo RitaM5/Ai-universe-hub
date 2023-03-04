@@ -74,7 +74,7 @@ const showcardDetails = (singleData) => {
       <div class="md:flex md:justify-around mt-4">
       <div class="card w-full bg-base-100 shadow-xl max-sm:mx-auto">
         <div class="card-body">
-            <p>${description}</p>
+            <p class="text-1xl text-semibold">${description}</p>
             <div class="flex justify-around">
             ${pricing ? (pricing.map(priceData => `
                 <div class="shadow-sm text-sm w-28 h-20 text-green-600 card bg-base-100 shadow-sm text-center p-2">
@@ -96,7 +96,7 @@ const showcardDetails = (singleData) => {
             <h1 class="text-2xl font-semibold">Integrations</h1>
               <ol class="list-decimal mt-2 ml-3">
               ${integrations ? (integrations.map(inteData =>`<li>${inteData}</li>`))
-            : "free of cost"
+            : "no data found"
         }
               </ol>
             </div>
