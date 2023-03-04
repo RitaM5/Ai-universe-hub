@@ -77,7 +77,7 @@ const showcardDetails = (singleData) => {
             <p>${description}</p>
             <div class="flex justify-around">
             ${pricing ? (pricing.map(priceData => `
-                <div class="shadow-sm text-sm w-28 h-20 card bg-base-100 shadow-sm text-center p-2">
+                <div class="shadow-sm text-sm w-28 h-20 text-green-600 card bg-base-100 shadow-sm text-center p-2">
                 <p>${priceData.price}</p>
                 <p>${priceData.plan}</p>
                 </div>
@@ -136,7 +136,7 @@ const sortingAllData =  () => {
  }
 
   function sortFunction(a,b){  
-    var dateA = new Date(a.published_in).getTime();
-    var dateB = new Date(b.published_in).getTime();
+    let dateA = new Date(a.published_in).getTime();
+    let dateB = new Date(b.published_in).getTime();
     return dateA > dateB ? 1 : -1;  
   }; 
