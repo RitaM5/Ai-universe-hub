@@ -31,9 +31,9 @@ const displayData = (data, dataLimit) => {
         <div class="px-8">
         <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Features</h2>
            <ol id ="order-list" class="max-w-md space-y-1 text-gray-500 list-decimal dark:text-gray-400">
-           ${features.map(feature => `<li class="text-sm ml-3">${feature ? feature : "not found"}</li>`)
+           ${features.map(feature =>`<li class="text-sm ml-3">${feature ? feature : "not found"}</li>`).join("")
             }
-           </ol>    
+           </ol>  
         </div>
         <hr class="h-px my-8 bg-gray-200 w-80 mx-auto border-0 dark:bg-gray-700">
         <div class="flex justify-between px-8 mb-5">
@@ -81,21 +81,21 @@ const showcardDetails = (singleData) => {
                 <p>${priceData.price}</p>
                 <p>${priceData.plan}</p>
                 </div>
-                `)) : "free of cost"
+                `).join("")) : "free of cost"
         }
             </div>
             <div class="md:flex md:justify-between">
              <div class="pb-6">
              <h1 class="text-2xl font-semibold">Features</h1>
              <ul class="list-decimal mt-2">
-              ${featureItem.map(item => `<li class="text-sm">${item.feature_name ? item.feature_name : "not found"}</li>`)
+              ${featureItem.map(item => `<li class="text-sm">${item.feature_name ? item.feature_name : "not found"}</li>`).join("")
         }
              </ul>
             </div>
             <div class="pl-4 pb-8">
             <h1 class="text-2xl font-semibold">Integrations</h1>
               <ol class="list-decimal mt-2 ml-3">
-              ${integrations ? (integrations.map(inteData =>`<li class="text-sm">${inteData}</li>`))
+              ${integrations ? (integrations.map(inteData =>`<li class="text-sm">${inteData}</li>`).join(""))
             : "no data found"
         }
               </ol>
